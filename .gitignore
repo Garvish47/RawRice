@@ -1,0 +1,22 @@
+# Editor / temporary files
+*.swp
+*.swo
+*~
+*.tmp
+
+# Backup files
+*.bak
+*.old
+*.orig
+
+# Secrets / credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# OS / desktop noise
+.DS_Store
+Thumbs.db
