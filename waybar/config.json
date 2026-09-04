@@ -1,8 +1,12 @@
 {
-	"layer" : "top",
+	"layer" : "bot",
 	"position": "top",
 	"height": 32,
-	"spacing": 4,
+	"spacing": 0,
+	"margin-top": 4,
+	"margin-bottom": 0,
+	"margin-left": 200,
+	"margin-right": 200,
 
 	"modules-left": [
 		"hyprland/workspaces"
@@ -13,8 +17,9 @@
 	],
 
 	"modules-right": [
-		"cpu",
-		"memory",
+		//"cpu",
+		//"custom/gpu",
+		//"memory",
 		"battery",
 		"pulseaudio",
 		"network",
@@ -34,6 +39,14 @@
 
 	"cpu": {
 		"format": "CPU {usage}%"
+	},
+
+	"custom/gpu": {
+		"exec": "nvidia-smi --query-gpu=utilization.gpu,temprature.gpu --format=csv,noheader, nounits",
+		"interval": 5,
+		"format": "GPU {}",
+		"tooltip": true,
+		"tooltip-format": "NVIDIA RTX 3050\nUsage: {}"
 	},
 
 	"memory": {

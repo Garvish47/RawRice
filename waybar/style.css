@@ -1,26 +1,36 @@
 /* ============================================================
- * WAYBAR — Forest Glass
+ * WAYBAR — Glass
  * ============================================================
 
  * ============================================================
  * DESIGN TOKENS
  * ============================================================ */
 
-@define-color background #1f3725;
-@define-color surface #4b6e4c;
-@define-color surface_alt #618156;
+/* Core */
+@define-color background #141216;
+@define-color surface #27232b;
+@define-color surface_alt #8F56E1;
 
-@define-color sage #93a790;
-@define-color sage_light #b2bd97;
-@define-color cream #9ca47d;
+@define-color accent #AC82E9;
+@define-color accent_deep #8F56E1;
 
-@define-color text #b2bd97;
-@define-color text_muted #93a790;
+@define-color foreground #d8cab8;
+@define-color foreground_muted #8f887f;
 
-@define-color border #627e58;
+@define-color complementary #c4e881;
 
-@define-color glass rgba(31, 55, 37, 0.82);
-@define-color glass_border rgba(98, 126, 88, 0.55);
+/* Additional */
+@define-color warning #fcb167;
+@define-color danger #fc4649;
+@define-color yellow #f3fc7b;
+@define-color green #c4e881;
+@define-color blue #7b91fc;
+@define-color cyan #92fcfa;
+@define-color magenta #fc92fc;
+
+/* Glass */
+@define-color glass rgba(20, 18, 22, 0.82);
+@define-color glass_border rgba(172, 130, 233, 0.35);
 
 
 /* ============================================================
@@ -28,8 +38,8 @@
  * ============================================================ */
 
 * {
-    font-family: "Noto Sans", sans-serif;
-    font-size: 13px;
+    font-family: "Maple Mono NF", "Noto Sans", sans-serif;
+    font-size: 12px;
 }
 
 
@@ -39,12 +49,12 @@
 
 window#waybar {
     background: @glass;
-    color: @text;
+    color: @foreground;
 
-    border: 1px solid @glass_border;
-    border-radius: 14px;
+    border: 0px solid @glass_border;
+    border-radius: 13px;
 
-    margin: 6px 12px 0;
+    margin: 5px 12px 0;
 }
 
 
@@ -53,46 +63,47 @@ window#waybar {
  * ============================================================ */
 
 #workspaces {
-    margin: 3px 4px;
+    margin: 2px 4px;
 }
 
 #workspaces button {
-    min-width: 24px;
+    min-width: 23px;
 
-    padding: 0 5px;
-    margin: 0 1px;
+    padding: 1 5px;
+    margin: 1 1px;
 
-    color: @text_muted;
+    color: alpha(@foreground, 0.65);
     background: transparent;
-    
+
     border: none;
-    border-radius: 8px;
+    border-radius: 7px;
 }
 
 #workspaces button.active {
-	color: @cream;
-	background: rgba(97, 129, 86, 0.55);
+    color: @accent;
+    background: alpha(@accent_deep, 0.55);
 }
 
 #workspaces button:hover {
-	color: @sage_light;
-	background: rgba(75, 110, 76, 0.35);
+    color: @foreground;
+    background: alpha(@accent, 0.25);
 }
+
 
 /* ============================================================
  * WINDOW TITLE
  * ============================================================ */
 
 #window {
-    margin: 3px 8px;
-    padding: 0 12px;
+    margin: 2px 8px;
+    padding: 1 12px;
 
-    color: @sage_light;
+    color: @foreground;
 
-    background: rgba(75, 110, 76, 0.28);
+    background: alpha(@accent_deep, 0.28);
 
-    border: 1px solid rgba(98, 126, 88, 0.25);
-    border-radius: 10px;
+    border: 0px solid alpha(@accent, 0.25);
+    border-radius: 9px;
 }
 
 
@@ -100,20 +111,23 @@ window#waybar {
  * SYSTEM MODULES
  * ============================================================ */
 
-#cpu,
+#cpu {
+    color: @foreground;
+}
+
 #memory,
 #battery,
 #pulseaudio,
 #network {
-    margin: 3px 1px;
-    padding: 0 6px;
+    margin: 2px 1px;
+    padding: 1 6px;
 
-    color: @text_muted;
+    color: alpha(@foreground, 0.72);
 }
 
 #clock {
-	margin: 3px 6px 3px 2px;
-	padding: 0 8px;
-	
-	color: @cream;
+    margin: 2px 6px 3px 2px;
+    padding: 1 8px;
+
+    color: @accent;
 }

@@ -19,7 +19,7 @@ hl.monitor({
     output   = "",
     mode     = "preferred",
     position = "auto",
-    scale    = "auto",
+    scale    = 1.2,
 })
 
 
@@ -49,8 +49,9 @@ local menu        = "wofi --show drun"
 -- end)
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
-	hl.exec_cmd("waybar")
+	hl.exec_cmd("waybar -c ~/.config/waybar/config.json")
 	hl.exec_cmd("mako")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
@@ -90,20 +91,29 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -----------------------
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+
+-- hl.wallpaper {
+--     monitor = eDP-1,
+--     path = /home/Awryish/Pictures/Wallpapers/,
+--     fit_mode = cover
+-- }
+
 hl.config({
     general = {
-        gaps_in  = 5,
-        gaps_out = 20,
+	float_gaps = -1;
+        gaps_in  = 1,
+        gaps_out = 3,
 
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border   = { colors = {"rgba(d8cab8ff)", "rgba(d8ccb8ee)"}, angle = 135 },
+            inactive_border = "rgba(ac82e9af)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-        resize_on_border = false,
+        resize_on_border = true,
+	hover_icon_on_border = true,
 
         -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing = false,
@@ -112,25 +122,25 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 10,
+        rounding       = 7,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        active_opacity   = 0.9,
+        inactive_opacity = 0.8,
 
         shadow = {
             enabled      = true,
-            range        = 4,
+            range        = 12,
             render_power = 3,
-            color        = 0xee1a1a1a,
+            color        = 0x55000000,
         },
 
         blur = {
             enabled   = true,
-            size      = 3,
-            passes    = 1,
-            vibrancy  = 0.1696,
+            size      = 9,
+            passes    = 2,
+            vibrancy  = 0.12,
         },
     },
 
@@ -311,6 +321,9 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+-- Ricing and debugging
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("pkill waybar; waybar -c ~/.config/waybar/config.json"))
 
 
 --------------------------------
