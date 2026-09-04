@@ -1,8 +1,8 @@
 {
 	"layer" : "top",
 	"position": "top",
-	"height": 36,
-	"spacing": 6,
+	"height": 32,
+	"spacing": 4,
 
 	"modules-left": [
 		"hyprland/workspaces"
@@ -41,7 +41,7 @@
 	},
 
 	"battery": {
-		"bat": "BAT2",
+		"bat": "BAT1",
 		"format": "CHARGE {capacity}%",
 		"format-charging": "CHARGING {capacity}%"
 	},
@@ -49,7 +49,7 @@
 	"pulseaudio": {
 		"format": "VOL {volume}%",
 		"format-muted": "VOL MUTED",
-		"on-click": "wpctl set-mute @DEFAULT_SUDIO_SINK@ toggle"
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 	},
 
 	"network": {
