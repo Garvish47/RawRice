@@ -20,9 +20,10 @@
 		//"cpu",
 		//"custom/gpu",
 		//"memory",
+		"network",
 		"battery",
 		"pulseaudio",
-		"network",
+		"tray",
 		"clock"
 	],
 
@@ -41,37 +42,67 @@
 		"format": "CPU {usage}%"
 	},
 
-	"custom/gpu": {
-		"exec": "nvidia-smi --query-gpu=utilization.gpu,temprature.gpu --format=csv,noheader, nounits",
-		"interval": 5,
-		"format": "GPU {}",
-		"tooltip": true,
-		"tooltip-format": "NVIDIA RTX 3050\nUsage: {}"
-	},
+//	"custom/gpu": {
+//		"exec": "nvidia-smi --query-gpu=utilization.gpu,temprature.gpu --format=csv,noheader, nounits",
+//		"interval": 5,
+//		"format": "GPU {}",
+//		"tooltip": true,
+//		"tooltip-format": "NVIDIA RTX 3050\nUsage: {}"
+//	},
 
-	"memory": {
-		"format": "RAM {percentage}%"
-	},
+//	"memory": {
+//		"format": "RAM {percentage}%"
+//	},
 
 	"battery": {
-		"bat": "BAT1",
-		"format": "CHARGE {capacity}%",
-		"format-charging": "CHARGING {capacity}%"
-	},
+		"states": {
+		        "warning": 30,
+        		"critical": 15
+		},
+	        "format": "{icon} {capacity}%",
+        	"format-charging": "󰂄 {capacity}%",
+	        "format-plugged": "󰂄{capacity}%",
+        	"format-alt": "{icon} {time}",
+        	"format-full": "󱈑 {capacity}%",
+        	"format-icons": [
+        		"󱊡",
+	        	"󱊢",
+        		"󱊣"
+        	]
+        },
 
 	"pulseaudio": {
-		"format": "VOL {volume}%",
-		"format-muted": "VOL MUTED",
-		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+		"scroll-step": 5,
+		"max-volume": 150,
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{icon} {volume}%",
+		//"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+		"format-icons": [
+      		  "",
+      		  "",
+      		  " "
+    		],
+		"nospacing": 1,
+		"format-muted": " ",
+		"on-click": "pavucontrol",
+		"tooltip": false
 	},
 
 	"network": {
-		"format-wifi": "WIFI {essid}",
-		"format-ethernet": "ETH {ifname}",
-		"format-disconnected": "OFFLINE"
+		"format-wifi": "  {bandwidthDownBits}",
+		"format-ethernet": "  ETH {bandwidthDownBits}",
+		"format-disconnected": "󰤮  No Network",
+		"interval": 5,
+		"tooltip": false
 	},
 
 	"clock": {
-		"format": "{:%H:%M}"
+		"format": "󰅐 {:%H:%M}",
+		"tooltip": false
+	},
+
+	"tray": {
+		"spacing": 10,
+		"tooltip": false
 	}
 }
